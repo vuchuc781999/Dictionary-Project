@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class Dictionary {
     private static AVLTree wordList;
 
@@ -21,5 +23,13 @@ public class Dictionary {
 
     public static void print() {
         wordList.printInOrder();
+    }
+
+    public static void approximateSearch(Word w) {
+        wordList.approximateSearch(w);
+    }
+
+    public static void exportToFile(String fileName) {
+        wordList.exportToFile(fileName);
     }
 }

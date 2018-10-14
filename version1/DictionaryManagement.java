@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.Scanner;
+        import java.util.Scanner;
 
 public class DictionaryManagement {
     private static Scanner sc;
@@ -16,23 +16,25 @@ public class DictionaryManagement {
     }
 
     public static void insertFromFile() {
-        File file = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "\\dictionaries.txt");
+        File file = new File("dictionaries.txt");
 
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader reader = new BufferedReader(fileReader);
 
-            String tarTemp;
+            String temp;
+            int tempIndex;
 
-            while ((tarTemp = reader.readLine()) != null) {
-                Dictionary.add(new Word(tarTemp, reader.readLine()));
+            temp = reader.readLine();
+
+            while ((temp = reader.readLine()) != null) {
+                tempIndex = temp.indexOf('\t');
+                Dictionary.add(new Word(temp.substring(0, tempIndex), temp.substring(tempIndex + 1)));
             }
 
             fileReader.close();
             reader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -51,5 +53,21 @@ public class DictionaryManagement {
         String tar = sc.nextLine();
 
         Dictionary.delete(new Word(tar, ""));
+    }
+
+    public static void dictionarySearcher() {
+        String tar = sc.nextLine();
+
+        Dictionary.approximateSearch(new Word(tar, ""));
+    }
+
+    public static void dictionaryExportToFile() {
+        String fileName = sc.nextLine();
+
+        if (fileName.endsWith(".txt")) {
+            Dictionary.exportToFile(fileName);
+        } else {
+            System.out.println("This dictionary only support to export to \".txt\" file.\nLet try again with a \".txt\" file name.");
+        }
     }
 }

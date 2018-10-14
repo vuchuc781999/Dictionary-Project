@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Stack;
 
 class Node<T> {
@@ -121,6 +122,7 @@ public class AVLTree {
 
     private Node<Word> delete(Node<Word> wordNode, Word word) {
         if (wordNode == null) {
+            System.out.println("This dictionary doesn't have this word");
             return wordNode;
         }
 
@@ -225,6 +227,49 @@ public class AVLTree {
             }
         }
 
-        System.out.println(count);
+        System.out.println("\nThis dictionary have " + count + " words.");
+    }
+
+    public void approximateSearch(Word word) {
+        Stack<Node<Word>> wordStack = new Stack<>();
+        Node<Word> temp = root;
+
+        while (!wordStack.empty() || temp != null) {
+            if (temp != null) {
+                wordStack.push(temp);
+                temp = temp.getLeftNode();
+            } else {
+                temp = wordStack.pop();
+                if (temp.getData().approximateCompareTo(word) == 0) {
+                    System.out.println(temp.getData().getWord_target());
+                }
+                temp = temp.getRightNode();
+            }
+        }
+    }
+
+    public void exportToFile(String fileName) {
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            PrintWriter writer = new PrintWriter(fileWriter);
+            Stack<Node<Word>> wordStack = new Stack<>();
+            Node<Word> temp = root;
+
+            while (!wordStack.empty() || temp != null) {
+                if (temp != null) {
+                    wordStack.push(temp);
+                    temp = temp.getLeftNode();
+                } else {
+                    temp = wordStack.pop();
+                    temp.getData().printToFile(writer);
+                    temp = temp.getRightNode();
+                }
+            }
+
+            fileWriter.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
