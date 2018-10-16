@@ -187,7 +187,7 @@ public class AVLTree {
         root = this.delete(root, word);
     }
 
-    public Word search(Word word) {
+   public Word search(Word word) {
         int compare = 0;
         Node<Word> temp = root;
         Word result = null;
@@ -206,7 +206,12 @@ public class AVLTree {
                  break;
              }
          }
-
+         if(result != null )
+         System.out.println(result.getWord_explain());
+         else
+         {
+             System.out.println("Sorry, your word is not in the dictionary\n");
+         }
          return result;
     }
 

@@ -40,7 +40,7 @@ public class DictionaryCommandLine {
         dictionaryManagement.insertFromFile();
 
         while (true) {
-            System.out.println("\nPress 0 to finish\nPress 1 to insert a new word\nPress 2 to show dictionary\nPress 3 to look up a word\nPress 4 to search a word\nPress 5 to delete a word\nPress 6 to export this dictionary to a \".txt\" file\n");
+            System.out.println("\nPress 0 to finish\nPress 1 to insert a new word\nPress 2 to show dictionary\nPress 3 to look up a word\nPress 4 to search a word\nPress 5 to delete a word\nPress 6 to export this dictionary to a \".txt\" file");
 
             temp = sc.nextLine();
 

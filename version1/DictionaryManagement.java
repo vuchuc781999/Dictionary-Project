@@ -2,7 +2,7 @@ import java.io.*;
         import java.util.Scanner;
 
 public class DictionaryManagement {
-    private static Scanner sc;
+    Scanner sc;
     Dictionary dictionary;
     public DictionaryManagement() {
         sc = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class DictionaryManagement {
     }
 
     public void insertFromFile() {
-        File file = new File("E:\\Java\\Dictionary-Project\\version1\\dictionaries.txt");
+        File file = new File("dictionaries.txt");
 
         try {
             FileReader fileReader = new FileReader(file);
@@ -58,8 +58,10 @@ public class DictionaryManagement {
 
     public void dictionarySearcher() {
         String tar = sc.nextLine();
-
-        dictionary.approximateSearch(new Word(tar, ""));
+        Word t= new Word(tar,"");
+        dictionary.searchWord(t);
+        System.out.println("Related words:");
+        dictionary.approximateSearch(t);
     }
 
     public void dictionaryExportToFile() {
