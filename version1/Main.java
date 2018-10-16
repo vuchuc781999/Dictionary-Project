@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        DictionaryCommandLine.dictionaryAdvanced();
+        DictionaryCommandLine main = new DictionaryCommandLine();
+        main.dictionaryAdvanced();
     }
 }

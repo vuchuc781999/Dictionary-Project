@@ -3,20 +3,21 @@ import java.io.*;
 
 public class DictionaryManagement {
     private static Scanner sc;
-
-    static {
+    Dictionary dictionary;
+    public DictionaryManagement() {
         sc = new Scanner(System.in);
+        dictionary = new Dictionary();
     }
 
-    public static void insertFromCommandline () {
+    public void insertFromCommandline () {
         String tar = sc.nextLine();
         String exp = sc.nextLine();
 
-        Dictionary.add(new Word(tar, exp));
+        dictionary.add(new Word(tar, exp));
     }
 
-    public static void insertFromFile() {
-        File file = new File("dictionaries.txt");
+    public void insertFromFile() {
+        File file = new File("E:\\Java\\Dictionary-Project\\version1\\dictionaries.txt");
 
         try {
             FileReader fileReader = new FileReader(file);
@@ -29,7 +30,7 @@ public class DictionaryManagement {
 
             while ((temp = reader.readLine()) != null) {
                 tempIndex = temp.indexOf('\t');
-                Dictionary.add(new Word(temp.substring(0, tempIndex), temp.substring(tempIndex + 1)));
+                dictionary.add(new Word(temp.substring(0, tempIndex), temp.substring(tempIndex + 1)));
             }
 
             fileReader.close();
@@ -39,33 +40,33 @@ public class DictionaryManagement {
         }
     }
 
-    public static void dictionaryLookup() {
+    public void dictionaryLookup() {
         String tar = sc.nextLine();
 
-        Word result = Dictionary.searchWord(new Word(tar, ""));
+        Word result = dictionary.searchWord(new Word(tar, ""));
 
         String exp = result == null?"This dictionary doesn't have this word":result.getWord_explain();
 
         System.out.println(exp);
     }
 
-    public static void deleteWord() {
+    public void deleteWord() {
         String tar = sc.nextLine();
 
-        Dictionary.delete(new Word(tar, ""));
+        dictionary.delete(new Word(tar, ""));
     }
 
-    public static void dictionarySearcher() {
+    public void dictionarySearcher() {
         String tar = sc.nextLine();
 
-        Dictionary.approximateSearch(new Word(tar, ""));
+        dictionary.approximateSearch(new Word(tar, ""));
     }
 
-    public static void dictionaryExportToFile() {
+    public void dictionaryExportToFile() {
         String fileName = sc.nextLine();
 
         if (fileName.endsWith(".txt")) {
-            Dictionary.exportToFile(fileName);
+            dictionary.exportToFile(fileName);
         } else {
             System.out.println("This dictionary only support to export to \".txt\" file.\nLet try again with a \".txt\" file name.");
         }
