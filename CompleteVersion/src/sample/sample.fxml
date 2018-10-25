@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <MenuBar id="menubar" fx:id="menuBar" layoutY="2.0" prefHeight="25.0" prefWidth="800.0">
+        <menus>
+            <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
+              <items>
+                  <MenuItem fx:id="ANWMI" mnemonicParsing="false" onAction="#addNewWord" text="Add New Word..." />
+                  <MenuItem fx:id="DSWMI" mnemonicParsing="false" onAction="#deleteWord" text="Delete selected word..." />
+                  <MenuItem fx:id="ETFMI" mnemonicParsing="false" onAction="#exportToFile" text="Export to file..." />
+                <MenuItem fx:id="exitMI" mnemonicParsing="false" onAction="#exitProgram" text="Exit (Alt+F4)" />
+              </items>
+            </Menu>
+          <Menu fx:id="viewMenu" mnemonicParsing="false" text="View">
+               <items>
+                  <Menu fx:id="changeLangMenu" mnemonicParsing="false" text="Change Language">
+                    <items>
+                      <MenuItem fx:id="enMI" mnemonicParsing="false" onAction="#changeLangToEng" text="English" />
+                        <MenuItem fx:id="viMI" mnemonicParsing="false" onAction="#changeLangToVie" text="Vietnamese" />
+                    </items>
+                  </Menu>
+               </items>
+          </Menu>
+          <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About">
+            <items>
+              <MenuItem fx:id="aboutMI" mnemonicParsing="false" onAction="#openReadme" text="About...                        " />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane fx:id="tabPane" layoutY="25.0" prefHeight="575.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tab1" styleClass="tag" text="Word Translator">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tagArea">
+                     <children>
+                        <Label fx:id="enLabel1" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="58.0" text="English:" textAlignment="CENTER" />
+                        <TextField fx:id="wordSearchBar" layoutX="14.0" layoutY="40.0" onKeyReleased="#updateResultList" prefHeight="25.0" prefWidth="212.0" promptText="Input word..." styleClass="textField" />
+                        <TextArea fx:id="resultWord" editable="false" layoutX="234.0" layoutY="40.0" prefHeight="495.0" prefWidth="552.0" styleClass="textArea" wrapText="true" />
+                        <Label fx:id="viLabel1" layoutX="234.0" layoutY="14.0" prefHeight="3.0" prefWidth="84.0" text="Vietnamese:" />
+                        <ListView fx:id="resultList" layoutX="14.0" layoutY="67.0" onMouseClicked="#updateResultText" prefHeight="468.0" prefWidth="212.0" styleClass="textArea" />
+                        <Button fx:id="readButton1" layoutX="740.0" layoutY="10.0" mnemonicParsing="false" onAction="#readWord" prefHeight="25.0" prefWidth="45.0" text="Read" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tab2" styleClass="tag" text="Paragraph Translator">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tagArea">
+                     <children>
+                        <TextArea fx:id="enPara" layoutX="14.0" layoutY="38.0" prefHeight="494.0" prefWidth="277.0" promptText="Input Paragraph..." styleClass="textArea" wrapText="true" />
+                        <TextArea fx:id="viPara" editable="false" layoutX="302.0" layoutY="39.0" prefHeight="493.0" prefWidth="484.0" promptText="Result will be show here." styleClass="textArea" wrapText="true">
+                           <cursor>
+                              <Cursor fx:constant="WAIT" />
+                           </cursor></TextArea>
+                        <Label fx:id="enLabel2" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="81.0" text="English:" />
+                        <Label fx:id="viLabel2" layoutX="302.0" layoutY="14.0" prefHeight="17.0" prefWidth="105.0" text="Vietnamese:" />
+                        <Button fx:id="translateButton" layoutX="222.0" layoutY="10.0" mnemonicParsing="false" onAction="#translateParagraph" prefHeight="25.0" prefWidth="69.0" text="Translate" />
+                        <Button fx:id="readButton2" layoutX="742.0" layoutY="10.0" mnemonicParsing="false" onAction="#readParagraph" prefHeight="25.0" prefWidth="45.0" text="Read" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</Pane>

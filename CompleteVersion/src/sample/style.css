@@ -1,0 +1,23 @@
+.button {
+	-fx-background-color: Turquoise;
+}
+
+.textField {
+	-fx-background-color: White;
+}
+
+.textArea {
+	-fx-background-color: AliceBlue;
+}
+
+.tag {
+	-fx-background-color: AliceBlue;
+}
+
+#menubar {
+	-fx-background-color: WhiteSmoke;
+}
+
+.tagArea {
+	-fx-background-color: AliceBlue;
+}
